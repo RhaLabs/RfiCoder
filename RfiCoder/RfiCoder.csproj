@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{F361CEB2-484F-4F1B-8172-311B62FE7A45}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RfiCoder</RootNamespace>
+    <AssemblyName>RfiCoder</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Exchange.WebServices">
+      <HintPath>..\..\..\Libraries\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\RfiCodingService\packages\MySql.Data.6.9.3\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\RfiCodingService\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.RegularExpressions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\ConfigHandler.cs" />
+    <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Configuration\Credentials.cs" />
+    <Compile Include="Data\DatabaseConnector.cs" />
+    <Compile Include="Data\GeneralIndexTable.cs" />
+    <Compile Include="Data\HashStorage.cs" />
+    <Compile Include="Data\HashStorageInterface.cs" />
+    <Compile Include="Data\HashXmlStorage.cs" />
+    <Compile Include="Data\NotQuestionsIndexTable.cs" />
+    <Compile Include="Data\QuestionsIndexTable.cs" />
+    <Compile Include="Data\Reporter.cs" />
+    <Compile Include="Data\RfiIndexTable.cs" />
+    <Compile Include="Data\SpamIndexTable.cs" />
+    <Compile Include="Data\WalmartIndexTable.cs" />
+    <Compile Include="Entity\CollectionEntity.cs" />
+    <Compile Include="Entity\DataBaseEntity.cs" />
+    <Compile Include="Entity\MailBox.cs" />
+    <Compile Include="Entity\MailEntity.cs" />
+    <Compile Include="Entity\Person.cs" />
+    <Compile Include="Entity\ProgramMapping.cs" />
+    <Compile Include="Entity\Store.cs" />
+    <Compile Include="Enum\FileComparisonResult.cs" />
+    <Compile Include="Enum\ProgramTypes.cs" />
+    <Compile Include="Enum\QuestionTypes.cs" />
+    <Compile Include="Utilities\Categorizer.cs" />
+    <Compile Include="Utilities\Detective.cs" />
+    <Compile Include="Utilities\DriveResolver.cs" />
+    <Compile Include="Utilities\EmailHelper.cs" />
+    <Compile Include="Utilities\FileHandler.cs" />
+    <Compile Include="Utilities\Impersonator.cs" />
+    <Compile Include="Utilities\Parser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RfiCoder.cs" />
+    <Compile Include="Utilities\DateTime.cs" />
+    <Compile Include="Enum\TimeInterval.cs" />
+    <Compile Include="Enum\ProjectTypes.cs" />
+    <Compile Include="Utilities\SafeTokenHandle.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Indices\spam.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Indices\rfi.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Indices\general.xml" />
+    <None Include="Indices\notQuestions.xml" />
+    <None Include="Indices\questions.xml" />
+    <None Include="Indices\walmart.xml" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Authentication\Authentication.csproj">
+      <Project>{9E50BA8E-305C-4C20-81E6-19FFD3D0BE5B}</Project>
+      <Name>Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ConfigLibrary\ConfigLibrary\ConfigLibrary.csproj">
+      <Project>{FA9A6793-19EC-4DC2-8FFA-06E5A6A480E5}</Project>
+      <Name>ConfigLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EvocoWebCrawler\EvocoWebCrawler.csproj">
+      <Project>{9B366A54-47DF-4838-8DFB-44A28E95D0FC}</Project>
+      <Name>EvocoWebCrawler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logger\Logger.csproj">
+      <Project>{0BF7945E-5C25-4887-948A-751900CC9933}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\nbayes\trunk\nBayes\nBayes.csproj">
+      <Project>{3747B7E2-4EE1-4AAA-8EBF-B9655DAF6A6B}</Project>
+      <Name>nBayes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data" />
+    <Folder Include="Entity" />
+    <Folder Include="Indices" />
+    <Folder Include="Configuration" />
+    <Folder Include="Utilities" />
+    <Folder Include="Enum" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
