@@ -67,7 +67,7 @@ namespace RfiCoder.Utilities
       
       var result = analyzer.Categorize(document, index1, index2);
       
-      switch (result) {
+      /*switch (result) {
         case nBayes.CategorizationResult.First:
           index1.AddAndSave(document);
           
@@ -80,7 +80,7 @@ namespace RfiCoder.Utilities
           break;
         default:
           throw new Exception("Invalid value for CategorizationResult");
-      }
+      }*/
       
       return result;
     }
